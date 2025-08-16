@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Circular Economy Asset</title>
+<style>
+  body{font-family:system-ui,Arial,sans-serif;margin:2em;background:#0b0f10;color:#eaf4f2}
+  h1{font-size:1.4em}
+  p{margin:.4em 0}
+  small{opacity:.7}
+  .card{max-width:720px}
+</style>
+<body>
+  <div class="card">
+    <h1>♻️ Circular Economy</h1>
+    <p><b>Asset:</b> <span id="asset">—</span></p>
+    <p><b>Recycled content:</b> <span id="rc">—</span>%</p>
+    <p id="msg">—</p>
+    <small>Powered by circular thinking</small>
+  </div>
+<script>
+  // Read ?id=...&rc=...&msg=... from the URL
+  const p = new URLSearchParams(location.search);
+  document.getElementById("asset").textContent = p.get("id") || "N/A";
+  document.getElementById("rc").textContent    = p.get("rc") || "N/A";
+  document.getElementById("msg").textContent   = p.get("msg") || "N/A";
+</script>
+</body>
+</html>
