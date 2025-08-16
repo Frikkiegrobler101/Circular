@@ -1,29 +1,119 @@
 <!doctype html>
 <html lang="en">
+<head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Circular Economy Asset</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ALPAL • Reusable, Recyclable, Circular</title>
+<meta name="description" content="ALPAL: reusable, collapsible, stackable bulk packaging. Built for circular logistics: reuse for years, recycle at end-of-life.">
 <style>
-  body{font-family:system-ui,Arial,sans-serif;margin:2em;background:#0b0f10;color:#eaf4f2}
-  h1{font-size:1.4em}
-  p{margin:.4em 0}
-  small{opacity:.7}
-  .card{max-width:720px}
+  :root{
+    --bg:#0b0f10; --ink:#eaf4f2; --muted:#a6b9b4; --accent:#35b46f; --accent2:#2aa86b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#0b0f10;color:var(--ink)}
+  a{color:#bdf5d6;text-decoration:none}
+  .header{position:sticky;top:0;z-index:10;background:#0b0f10;border-bottom:1px solid rgba(255,255,255,.08)}
+  .wrap{max-width:1100px;margin:0 auto;padding:16px 20px}
+  .nav{display:flex;align-items:center;gap:18px}
+  .nav img{height:26px}
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center;padding:26px 20px}
+  @media (max-width:900px){.hero{grid-template-columns:1fr}}
+  .badge{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:rgba(53,180,111,.08);color:#bdf5d6;font-weight:700;letter-spacing:.25px;text-transform:uppercase;font-size:11px}
+  h1{margin:.2em 0 .5em;font-size:36px;line-height:1.15}
+  p.lead{margin:.2em 0 1.1em;color:#d7eee6}
+  .btn{appearance:none;border:0;border-radius:12px;padding:12px 16px;font-weight:800;background:linear-gradient(180deg,var(--accent),var(--accent2));color:#052514;cursor:pointer}
+  .ghost{background:transparent;border:1px solid rgba(255,255,255,.18);color:var(--ink)}
+  .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(0,0,0,.25));border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:16px}
+  .kv{display:grid;grid-template-columns:140px 1fr;gap:10px 16px}
+  .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+  .muted{color:var(--muted)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:900px){.grid{grid-template-columns:1fr}}
+  .footer{padding:22px 20px;border-top:1px solid rgba(255,255,255,.1);color:#9fb1ac}
+  .hero-img{border-radius:14px;border:1px solid rgba(255,255,255,.08);background:#0f1416;display:block;max-width:100%}
+  .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .chip{padding:6px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
 </style>
+</head>
 <body>
-  <div class="card">
-    <h1>♻️ Circular Economy</h1>
-    <p><b>Asset:</b> <span id="asset">—</span></p>
-    <p><b>Recycled content:</b> <span id="rc">—</span>%</p>
-    <p id="msg">—</p>
-    <small>Powered by circular thinking</small>
+  <!-- Header -->
+  <div class="header">
+    <div class="wrap">
+      <div class="nav">
+        <img alt="ALPAL" src="https://static.wixstatic.com/media/6dc243_0ba68d731be14da78bb0edc86c6abf88~mv2.png/v1/fill/w_244,h_55,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Primary_Logo_Inversed.png">
+        <span class="muted">Reusable • Recyclable • Circular</span>
+      </div>
+    </div>
   </div>
+
+  <!-- Hero -->
+  <div class="wrap hero">
+    <div>
+      <span class="badge">♻️ Circular Logistics</span>
+      <h1>Reusable. Recyclable. Designed for Circular Supply Chains.</h1>
+      <p class="lead">
+        ALPAL replaces one-way packaging with a durable, returnable, collapsible system — <strong>reuse for years</strong>, <strong>reduce waste</strong>, and <strong>recycle at end-of-life</strong>.
+      </p>
+      <div class="chips">
+        <span class="chip">Collapsible for return legs</span>
+        <span class="chip">Stackable & space-efficient</span>
+        <span class="chip">Plastic, repairable, recyclable</span>
+      </div>
+    </div>
+    <div>
+      <!-- ✅ Updated to use your uploaded image -->
+      <img class="hero-img" alt="ALPAL pallet/container" src="9e6483b0-caae-45cc-9c60-20b59fc79f10.png">
+    </div>
+  </div>
+
+  <!-- Minimal details: Asset + Sustainability only -->
+  <div class="wrap grid" style="padding:0 20px 26px">
+    <div class="card">
+      <h2 style="margin:0 0 10px">Asset details (from QR)</h2>
+      <div class="kv">
+        <div class="muted">Asset ID</div><div id="asset" class="mono">—</div>
+        <div class="muted">Recycled content</div><div class="mono"><span id="rc">—</span>%</div>
+        <div class="muted">Message</div><div id="msg" class="mono" style="word-break:break-word">—</div>
+      </div>
+      <div style="margin-top:12px">
+        <button id="copyUrl" class="ghost btn">Copy URL with these parameters</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 style="margin:0 0 10px">Sustainability at a glance</h2>
+      <ul style="margin:8px 0 0;padding-left:18px">
+        <li><strong>Reuse</strong>: durable platform designed for many trips, cutting single-use waste.</li>
+        <li><strong>Return efficiency</strong>: collapsible & stackable to reduce backhaul emissions.</li>
+        <li><strong>Recycle</strong>: plastic components are recyclable at end-of-life, supporting circular loops.</li>
+      </ul>
+      <p class="muted" style="margin-top:10px">Learn more on ALPAL’s site: platform innovation, sustainability, reliability, and efficiency pillars.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="wrap">
+      <small>© ALPAL. “We box smart.” This page is a lightweight overview aligned to official ALPAL messaging.</small>
+    </div>
+  </div>
+
 <script>
-  // Read ?id=...&rc=...&msg=... from the URL
   const p = new URLSearchParams(location.search);
-  document.getElementById("asset").textContent = p.get("id") || "N/A";
-  document.getElementById("rc").textContent    = p.get("rc") || "N/A";
-  document.getElementById("msg").textContent   = p.get("msg") || "N/A";
+  const asset = p.get("id") || "—";
+  const rc = p.get("rc") || "—";
+  const msg = p.get("msg") || "—";
+  document.getElementById("asset").textContent = asset;
+  document.getElementById("rc").textContent = rc;
+  document.getElementById("msg").textContent = msg;
+
+  document.getElementById("copyUrl").addEventListener("click", async ()=>{
+    try{ 
+      await navigator.clipboard.writeText(location.href);
+      const b = document.getElementById("copyUrl");
+      b.textContent = "Copied ✓"; 
+      setTimeout(()=>b.textContent="Copy URL with these parameters", 1200);
+    }catch(e){ alert("Copy failed — copy from the address bar instead."); }
+  });
 </script>
 </body>
 </html>
